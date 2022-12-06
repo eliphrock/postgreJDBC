@@ -13,9 +13,20 @@ public class Execute01 {
         System.out.println("Connection Success");
 
         //4. Step: Execute the query
+
+        /*
+        execute() method can be used in DDL(table creation,drop table,alter table) and DQL(select)
+        1)if you execute() method in DDL you will get false everytime.
+        2)if you execute() method in DQL you will get false or true
+                    When you use execute() method in DQL,if you get ResultSet Object as return you will get true
+                    otherwise you will get false.
+         */
+
+
         //1.Example Create a workers table with the columns worker_id,worker_name,worker_salary
         String sql1="CREATE TABLE workers(worker_id VARCHAR(50),worker_name VARCHAR(20),worker_salary INT);";
-        st.execute(sql1);
+        boolean sqlResult=st.execute(sql1);
+        System.out.println(sqlResult);
 
          //2Example: Alter table by adding worker_address column into the workers table
         String sql2="ALTER TABLE workers ADD worker_address VARCHAR(80);";
