@@ -27,5 +27,12 @@ public class ExecuteQuery01 {
             System.out.println(resultSet2.getString("country_id")+"->"+resultSet2.getString("country_name"));
 
         }
+
+        //3.Example: Select the company whose number_of_employees is the lowest from companies table
+
+        String sql3="SELECT company FROM companies WHERE number_of_employees = (SELECT MIN(number_of_employees) FROM companies );";
+        ResultSet resultSet3 = st.executeQuery(sql3);
+        resultSet3.next();
+        System.out.println(resultSet3.getString("company"));
     }
 }
