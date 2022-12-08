@@ -1,10 +1,8 @@
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class JdbcUtils {
-
     private static Connection connection;
     private static Statement statement;
 
@@ -129,9 +127,35 @@ public class JdbcUtils {
 
     }
 
+    //The method to get column data into a list
+    public static List<Object> getColumnList(String columnName,String tableName){
+        ResultSet resultSet;
+        List<Object> columnData = new ArrayList<>();
 
+        String query = "SELECT "+columnName+" FROM "+tableName;
 
+        try {
+            resultSet = statement.executeQuery(query);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
 
+        while (true){
+            try {
+                if (!resultSet.next()) break;
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+            try {
+                columnData.add(resultSet.getObject(1));
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+
+        }
+
+        return columnData;
+    }
 
 
 }
