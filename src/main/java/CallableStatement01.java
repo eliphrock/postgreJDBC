@@ -58,5 +58,10 @@ public class CallableStatement01 {
         //6th step: to see the results on console  use "sout"
         System.out.printf("%.2f",cst2.getObject(1));
 
+        con.close();
+        st.close();
+        cst1.close();
+        cst2.close();
+
     }
 }
